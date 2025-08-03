@@ -1,0 +1,3 @@
+- The user wants me to answer technically.
+- The user does not want me to use `npm`. The user wants me to use `bun` instead.
+- The user does not want me to run `bun build`, `bun test`, or `bun start`.

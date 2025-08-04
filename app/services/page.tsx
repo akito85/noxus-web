@@ -6,23 +6,23 @@ import ArrowIcon from '../../components/atom/ArrowIcon'
 const Services = () => {
   return (
     <Hero layout="custom">
-      <div className="w-full h-full flex items-center justify-center relative">
+      <div className="w-full min-h-[768px] flex items-center justify-center relative">
         <div className="hidden md:block absolute top-0 left-0 h-full -ml-28">
           <Image
             src="/assets/images/Services/IllustrationLeft.png"
             alt=""
             width={407}
-            height={0}
-            className="h-full w-auto opacity-50"
+            height={604}
+            className="opacity-80"
           />
         </div>
-        <div className="hidden md:block absolute top-0 right-0 h-full -mr-28">
+        <div className="hidden md:block absolute bottom-0 right-0 h-full -mr-28">
           <Image
             src="/assets/images/Services/IllustrationRight.png"
             alt=""
             width={407}
-            height={0}
-            className="h-full w-auto opacity-50"
+            height={604}
+            className="opacity-80"
           />
         </div>
 

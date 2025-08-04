@@ -7,22 +7,22 @@ const Services = () => {
   return (
     <Hero layout="custom">
       <div className="w-full h-full flex items-center justify-center relative">
-        <div className="hidden md:block absolute top-0 left-0 w-1/3 h-full">
+        <div className="hidden md:block absolute top-0 left-0 h-full">
           <Image
             src="/assets/images/Services/IllustrationLeft.png"
             alt=""
-            layout="fill"
-            objectFit="contain"
-            className="opacity-50"
+            width={407}
+            height={0}
+            className="h-full w-auto opacity-50"
           />
         </div>
-        <div className="hidden md:block absolute top-0 right-0 w-1/3 h-full">
+        <div className="hidden md:block absolute top-0 right-0 h-full">
           <Image
             src="/assets/images/Services/IllustrationRight.png"
             alt=""
-            layout="fill"
-            objectFit="contain"
-            className="opacity-50"
+            width={407}
+            height={0}
+            className="h-full w-auto opacity-50"
           />
         </div>
 

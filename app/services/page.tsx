@@ -7,7 +7,7 @@ const Services = () => {
   return (
     <Hero layout="custom">
       <div className="w-full h-full flex items-center justify-center relative">
-        <div className="hidden md:block absolute top-0 left-0 h-full">
+        <div className="hidden md:block absolute top-0 left-0 h-full -ml-28">
           <Image
             src="/assets/images/Services/IllustrationLeft.png"
             alt=""
@@ -16,7 +16,7 @@ const Services = () => {
             className="h-full w-auto opacity-50"
           />
         </div>
-        <div className="hidden md:block absolute top-0 right-0 h-full">
+        <div className="hidden md:block absolute top-0 right-0 h-full -mr-28">
           <Image
             src="/assets/images/Services/IllustrationRight.png"
             alt=""

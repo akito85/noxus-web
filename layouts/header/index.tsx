@@ -30,19 +30,26 @@ export default function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between px-4 sm:px-6 py-4 bg-[#0A0A0A]/70 backdrop-blur-[20px] shadow-sm">
-      {/* Logo */}
-      <Link href="/">
-        <Noxus />
-      </Link>
-
+    <header className="sticky top-0 z-50 px-4 sm:px-8 md:px-16 lg:px-28 py-4 bg-[#0A0A0A]/70 backdrop-blur-[20px] shadow-sm">
       {/* Desktop Navigation */}
-      <div className="hidden lg:flex">
+      <nav className="hidden lg:flex lg:items-center lg:justify-between w-full mx-auto">
+        {/* Logo */}
+        <Link className="size-md" href="/">
+          <Noxus />
+        </Link>
+        
+        {/* Navigation Menu */}
         <Navigation menuItems={menuData} />
-      </div>
+        
+        {/* Desktop Button */}
+        <Button variant="primary" text="Let's Connect" />
+      </nav>
 
       {/* Mobile Navigation Button */}
-      <div className="lg:hidden">
+      <div className="lg:hidden flex items-center justify-between w-full">
+        <Link className="size-md" href="/">
+          <Noxus />
+        </Link>
         <Hamburger onClick={handleMenuToggle} />
       </div>
 
@@ -57,11 +64,6 @@ export default function Header() {
           </div>
         </div>
       )}
-
-      {/* Desktop Button */}
-      <div className="hidden lg:flex">
-        <Button variant="primary" text="Let's Connect" />
-      </div>
     </header>
   )
 }

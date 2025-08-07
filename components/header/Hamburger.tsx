@@ -23,7 +23,8 @@ const Hamburger = ({ onClick }: HamburgerProps) => {
         }`}
       />
       <div
-        className={`w-6 h-0.5 bg-white rounded-full my-1 transition-all duration-300 ease-in-out ${isOpen ? 'opacity-0' : ''
+        className={`w-6 h-0.5 bg-white rounded-full my-1 transition-all duration-300 ease-in-out ${
+          isOpen ? 'opacity-0' : ''
         }`}
       />
       <div

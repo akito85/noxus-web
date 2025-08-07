@@ -14,8 +14,16 @@ const Social = () => {
           Follow us on:
         </div>
         <div className="inline-flex justify-start items-center gap-3">
-          <img src="/assets/images/Footer/linkedin.svg" alt="LinkedIn" className="w-8 h-8" />
-          <img src="/assets/images/Footer/instagram.svg" alt="Instagram" className="w-8 h-8" />
+          <img
+            src="/assets/images/Footer/linkedin.svg"
+            alt="LinkedIn"
+            className="w-8 h-8"
+          />
+          <img
+            src="/assets/images/Footer/instagram.svg"
+            alt="Instagram"
+            className="w-8 h-8"
+          />
         </div>
       </div>
     </div>

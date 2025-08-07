@@ -37,10 +37,10 @@ export default function Header() {
         <Link className="size-md" href="/">
           <Noxus />
         </Link>
-        
+
         {/* Navigation Menu */}
         <Navigation menuItems={menuData} />
-        
+
         {/* Desktop Button */}
         <Button variant="primary" text="Let's Connect" />
       </nav>

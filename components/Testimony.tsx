@@ -168,7 +168,7 @@ const Testimony = () => {
 
                     {/* Quote */}
                     <blockquote className="w-full text-white text-xl lg:text-4xl font-bold leading-relaxed lg:leading-tight font-['Satoshi_Variable']">
-                     "{testimonial.quote}"
+                      "{testimonial.quote}"
                     </blockquote>
                   </div>
                 </div>

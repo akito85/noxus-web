@@ -19,7 +19,7 @@ export default function Header() {
 
   const menuData: MenuItem[] = [
     { id: 'services', label: 'Services', href: '/services' },
-    { id: 'work', label: 'Work', href: '/work' },
+    { id: 'work', label: 'Works', href: '/works' },
     { id: 'blog', label: 'Blog', href: '/blog' },
     { id: 'about', label: 'About Us', href: '/about' },
     { id: 'contact', label: 'Contact', href: '/contact' },

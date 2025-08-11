@@ -62,9 +62,10 @@ const technologies: Technology[] = [
   {
     name: 'Singlestore',
     logoUrl: '/assets/images/Stacks/singlestore.svg',
-  },  {
-    name: 'Vercel',
-    logoUrl: '/assets/images/Stacks/vercel.svg',
+  },
+  {
+    name: 'Supabase',
+    logoUrl: '/assets/images/Stacks/supabase.svg',
   },
   {
     name: 'Vercel',

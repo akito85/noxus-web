@@ -6,6 +6,7 @@ import Discussion from '../../components/Discussion'
 import Faq from '../../components/Faq'
 import Testimony from '../../components/Testimony'
 import Stack from '../../components/Stack'
+import Capability from '../../components/Capability'
 
 const Services = () => {
   return (
@@ -55,6 +56,7 @@ const Services = () => {
         </div>
       </Hero>
 
+      <Capability />
       <Stack />
       <Testimony />
       <Faq />

@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, ReactNode } from 'react'
 
 // Define interfaces for data structures
@@ -29,16 +31,19 @@ const AccordionItem = ({
   onToggle,
 }: AccordionItemProps) => {
   return (
-    <div className="px-5 py-3 rounded-sm backdrop-blur-xl bg-white/10 border border-white/20">
+    <>
       <button
         onClick={onToggle}
-        className="w-full flex justify-between items-center gap-1 text-left focus:outline-none focus:ring-2 focus:ring-red-800/50 rounded"
+        className="w-full flex items-center px-5 py-3 text-left focus:outline-none rounded"
         aria-expanded={isOpen}
       >
-        <h3 className="flex-1 text-white text-2xl md:text-3xl font-normal font-sans leading-9">
+        {/* Text content */}
+        <div className="flex-1 text-white text-3xl font-normal font-['Satoshi_Variable'] leading-9">
           {title}
-        </h3>
-        <div className="size-5 relative overflow-hidden flex items-center justify-center">
+        </div>
+        
+        {/* Toggle icon */}
+        <div className="size-5 relative overflow-hidden flex items-center justify-center flex-shrink-0">
           {/* First line of X - rotates from horizontal to diagonal */}
           <div
             className={`w-3 h-0.5 bg-red-800 absolute transition-all duration-400 ease-out ${
@@ -53,15 +58,14 @@ const AccordionItem = ({
           />
         </div>
       </button>
-
       <div
         className={`overflow-hidden transition-all duration-500 ease-out ${
-          isOpen ? 'max-h-96 opacity-100 mt-6' : 'max-h-0 opacity-0 mt-0'
+          isOpen ? 'max-h-96 opacity-100 mt-3 mb-3' : 'max-h-0 opacity-0 mt-0'
         }`}
       >
-        <div className="flex flex-col gap-5">{children}</div>
+        <div className="flex flex-col ml-3">{children}</div>
       </div>
-    </div>
+    </>
   )
 }
 
@@ -80,10 +84,8 @@ const ServiceItem = ({
 }: ServiceItemProps) => (
   <button
     onClick={onClick}
-    className={`w-full flex items-center gap-3 text-left p-2 rounded-lg transition-all duration-300 ease-out transform ${
-      isSelected
-        ? 'bg-red-800/20 scale-105 shadow-lg shadow-red-800/10'
-        : 'hover:bg-white/5 hover:scale-102'
+    className={`flex items-center gap-3 text-left p-2 rounded-lg transition-all duration-300 ease-out transform ${
+      isSelected ? '' : 'hover:bg-white/5 hover:scale-102'
     }`}
   >
     <div
@@ -94,8 +96,8 @@ const ServiceItem = ({
       }`}
     />
     <div
-      className={`flex-1 text-xl md:text-2xl font-normal font-sans leading-loose transition-all duration-300 ease-out ${
-        isSelected ? 'text-white font-medium' : 'text-white/70'
+      className={`flex-1 text-xl font-normal font-['Satoshi_Variable'] leading-loose transition-all duration-300 ease-out ${
+        isSelected ? 'text-white font-normal' : 'text-white/70'
       }`}
     >
       {text}
@@ -111,7 +113,7 @@ const RightPanel = ({ selectedService }: RightPanelProps) => {
   if (!selectedService) return null
 
   return (
-    <div className="w-full lg:w-96 flex flex-col justify-center items-center gap-10 p-6">
+    <div className="w-full flex flex-col justify-center items-center gap-10 p-6">
       <div className="w-full max-w-80 h-48 flex flex-col justify-start items-start gap-2.5 overflow-hidden rounded-lg">
         <img
           className="w-full h-48 object-cover"
@@ -136,7 +138,7 @@ interface CapabilityProps {}
 const Capability = () => {
   const [openItem, setOpenItem] = useState<number>(0)
   const [selectedService, setSelectedService] = useState<string | null>(
-    'web-mobile',
+    'web-mobile'
   )
 
   const services: ServiceCategory[] = [
@@ -298,41 +300,53 @@ const Capability = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-6">
-      <div className="w-full max-w-7xl mx-auto">
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Left side - Accordion */}
-          <div className="flex-1">
-            <div className="flex flex-col gap-6">
-              {services.map((service, index) => (
-                <AccordionItem
-                  key={index}
-                  title={service.title}
-                  isOpen={openItem === index}
-                  onToggle={() => handleToggle(index)}
-                >
-                  {service.items.map((item, itemIndex) => (
-                    <ServiceItem
-                      key={itemIndex}
-                      text={item.text}
-                      isHighlighted={item.highlighted}
-                      isSelected={selectedService === item.id}
-                      onClick={() => handleServiceClick(item.id)}
-                    />
-                  ))}
-                </AccordionItem>
-              ))}
-            </div>
-          </div>
-
-          {/* Right side - Service Details */}
-          {selectedService && (
-            <div className="flex-shrink-0">
-              <div className="sticky top-6">
-                <RightPanel selectedService={getSelectedServiceData()} />
+    <div className="w-full self-stretch px-28 py-20 relative bg-neutral-950 inline-flex flex-col justify-center items-center gap-20">
+      <div className="self-stretch flex flex-col justify-start items-center gap-6">
+        <div className="text-center justify-center text-white text-4xl font-bold font-['Satoshi_Variable'] leading-9">
+          With an in-house team,
+          <br />
+          we offer personalized services
+        </div>
+        <div className="self-stretch text-center justify-center text-white text-2xl font-normal font-['Satoshi_Variable'] leading-loose">
+          We deliver tailored solutions with precision, reliability, and speed.
+        </div>
+      </div>
+      <div className="p-6 bg-stone-900/40 rounded-[30px] outline outline-1 outline-offset-[-1px] outline-white/10 backdrop-blur-xl">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-12">
+            {/* Left Column - Services List */}
+            <div className="flex flex-col justify-start items-start">
+              <div className="w-full rounded-[20px] flex flex-col justify-center items-start">
+                {services.map((service, index) => (
+                  <AccordionItem
+                    key={index}
+                    title={service.title}
+                    isOpen={openItem === index}
+                    onToggle={() => handleToggle(index)}
+                  >
+                    {service.items.map((item, itemIndex) => (
+                      <ServiceItem
+                        key={itemIndex}
+                        text={item.text}
+                        isHighlighted={item.highlighted}
+                        isSelected={selectedService === item.id}
+                        onClick={() => handleServiceClick(item.id)}
+                      />
+                    ))}
+                  </AccordionItem>
+                ))}
               </div>
             </div>
-          )}
+
+            {/* Right Column - Service Details */}
+            <div className="flex flex-col justify-start items-start">
+              {selectedService && (
+                <div className="top-6">
+                  <RightPanel selectedService={getSelectedServiceData()} />
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </div>

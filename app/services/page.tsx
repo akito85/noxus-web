@@ -12,8 +12,9 @@ const Services = () => {
   return (
     <>
       <Hero layout="custom">
-        <div className="w-full min-h-[768px] flex items-center justify-center relative">
-          <div className="hidden md:block absolute top-0 left-0 h-full -ml-28">
+        <div className="w-full min-h-[768px] flex items-center justify-center static">
+          <div className="w-full h-44 left-0 top-0 absolute bg-gradient-to-b from-neutral-950 to-neutral-950/0 z-10" />
+          <div className="hidden md:block absolute top-0 left-0">
             <Image
               src="/assets/images/Services/IllustrationLeft.png"
               alt=""
@@ -22,7 +23,7 @@ const Services = () => {
               className="opacity-80"
             />
           </div>
-          <div className="hidden md:block absolute bottom-0 right-0 h-full -mr-28">
+          <div className="hidden md:block absolute bottom-0 right-0">
             <Image
               src="/assets/images/Services/IllustrationRight.png"
               alt=""
@@ -53,6 +54,7 @@ const Services = () => {
               </div>
             </div>
           </div>
+          <div className="w-full h-44 left-0 bottom-0 absolute bg-gradient-to-b from-neutral-950/0 to-neutral-950" />
         </div>
       </Hero>
 

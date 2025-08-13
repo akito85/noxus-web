@@ -151,7 +151,7 @@ const RightPanel = ({ selectedService }: RightPanelProps) => {
   // Split description by newlines and filter out empty strings
   const descriptionItems = currentService.description
     .split('\n')
-    .filter(item => item.trim() !== '')
+    .filter((item) => item.trim() !== '')
 
   return (
     <div className="relative w-full h-full">

@@ -80,8 +80,28 @@ const technologies: Technology[] = [
     logoUrl: '/assets/images/Stacks/mysql.svg',
   },
   {
+    name: 'Postgresql',
+    logoUrl: '/assets/images/Stacks/postgresql.svg',
+  },
+  {
     name: 'Flutter',
     logoUrl: '/assets/images/Stacks/flutter.svg',
+  },
+  {
+    name: 'Kotlin',
+    logoUrl: '/assets/images/Stacks/kotlin.svg',
+  },
+  {
+    name: 'Swift',
+    logoUrl: '/assets/images/Stacks/swift.svg',
+  },
+  {
+    name: 'Minio',
+    logoUrl: '/assets/images/Stacks/minio.svg',
+  },
+  {
+    name: 'Envoy',
+    logoUrl: '/assets/images/Stacks/envoy.svg',
   },
 ]
 
@@ -102,7 +122,7 @@ const TechCard = ({ tech, index }: TechCardProps) => {
 
   return (
     <div
-      className="w-28 h-28 p-5 bg-stone-900/40 rounded-lg outline outline-1 outline-offset-[-1px] outline-white/10 backdrop-blur-xl flex justify-center items-center overflow-hidden hover:bg-stone-800/50 transition-all duration-300 hover:scale-105 group cursor-pointer relative"
+      className="w-26 h-26 p-5 bg-stone-900/40 rounded-lg outline outline-1 outline-offset-[-1px] outline-white/10 backdrop-blur-xl flex justify-center items-center overflow-hidden hover:bg-stone-800/50 transition-all duration-300 hover:scale-105 group cursor-pointer relative"
       style={{
         animationDelay: `${index * 50}ms`,
         animation: 'fadeInUp 0.6s ease-out forwards',
@@ -114,8 +134,8 @@ const TechCard = ({ tech, index }: TechCardProps) => {
           <Image
             src={tech.logoUrl}
             alt={`${tech.name} logo`}
-            width={55}
-            height={55}
+            width={50}
+            height={50}
             className={`object-contain transition-opacity duration-200 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}

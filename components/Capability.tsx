@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, ReactNode } from 'react'
+import { useState, ReactNode, useEffect } from 'react'
 
 // Define interfaces for data structures
 interface ServiceItemData {
@@ -31,28 +31,24 @@ const AccordionItem = ({
   onToggle,
 }: AccordionItemProps) => {
   return (
-    <>
+    <div className="w-full">
       <button
         onClick={onToggle}
-        className="w-full flex items-center px-5 py-3 text-left focus:outline-none rounded"
+        className="w-full flex items-center px-6 py-4 text-left focus:outline-none hover:bg-white/5 transition-all duration-300"
         aria-expanded={isOpen}
       >
-        {/* Text content */}
-        <div className="flex-1 text-white text-3xl font-normal font-['Satoshi_Variable'] leading-9">
+        <div className="flex-1 text-white text-2xl font-normal font-['Satoshi_Variable'] leading-8">
           {title}
         </div>
-        
-        {/* Toggle icon */}
-        <div className="size-5 relative overflow-hidden flex items-center justify-center flex-shrink-0">
-          {/* First line of X - rotates from horizontal to diagonal */}
+
+        <div className="size-6 relative overflow-hidden flex items-center justify-center flex-shrink-0">
           <div
-            className={`w-3 h-0.5 bg-red-800 absolute transition-all duration-400 ease-out ${
+            className={`w-4 h-0.5 bg-red-500 absolute transition-all duration-300 ease-out ${
               isOpen ? 'rotate-45 scale-110' : 'rotate-0 scale-100'
             }`}
           />
-          {/* Second line of X - rotates from vertical to diagonal */}
           <div
-            className={`w-0.5 h-3 bg-red-800 absolute transition-all duration-400 ease-out ${
+            className={`w-0.5 h-4 bg-red-500 absolute transition-all duration-300 ease-out ${
               isOpen ? 'rotate-45 scale-110' : 'rotate-0 scale-100'
             }`}
           />
@@ -60,12 +56,12 @@ const AccordionItem = ({
       </button>
       <div
         className={`overflow-hidden transition-all duration-500 ease-out ${
-          isOpen ? 'max-h-96 opacity-100 mt-3 mb-3' : 'max-h-0 opacity-0 mt-0'
+          isOpen ? 'max-h-96 opacity-100 pb-4' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="flex flex-col ml-3">{children}</div>
+        <div className="flex flex-col px-6">{children}</div>
       </div>
-    </>
+    </div>
   )
 }
 
@@ -82,27 +78,26 @@ const ServiceItem = ({
   onClick,
   isSelected = false,
 }: ServiceItemProps) => (
-  <button
-    onClick={onClick}
-    className={`flex items-center gap-3 text-left p-2 rounded-lg transition-all duration-300 ease-out transform ${
-      isSelected ? '' : 'hover:bg-white/5 hover:scale-102'
-    }`}
-  >
-    <div
-      className={`w-2 h-8 flex-shrink-0 transition-all duration-300 ease-out ${
+  <div className="relative group w-full">
+    <button
+      onClick={onClick}
+      className={`relative w-full flex items-center gap-4 text-left px-4 py-3 transition-all duration-300 ease-out overflow-hidden ${
         isSelected
-          ? 'bg-red-800 shadow-sm shadow-red-800/30 opacity-100'
-          : 'bg-transparent opacity-0'
-      }`}
-    />
-    <div
-      className={`flex-1 text-xl font-normal font-['Satoshi_Variable'] leading-loose transition-all duration-300 ease-out ${
-        isSelected ? 'text-white font-normal' : 'text-white/70'
+          ? 'bg-red-900/20 border-l-4 border-red-500'
+          : 'hover:bg-white/5 hover:translate-x-1'
       }`}
     >
-      {text}
-    </div>
-  </button>
+      <div
+        className={`flex-1 text-lg font-medium font-['Satoshi_Variable'] leading-relaxed transition-all duration-300 ease-out ${
+          isSelected
+            ? 'text-white font-semibold'
+            : 'text-white/70 group-hover:text-white/90'
+        }`}
+      >
+        {text}
+      </div>
+    </button>
+  </div>
 )
 
 interface RightPanelProps {
@@ -110,21 +105,121 @@ interface RightPanelProps {
 }
 
 const RightPanel = ({ selectedService }: RightPanelProps) => {
-  if (!selectedService) return null
+  const [isVisible, setIsVisible] = useState(false)
+  const [currentService, setCurrentService] = useState<ServiceItemData | null>(
+    selectedService
+  )
+
+  useEffect(() => {
+    if (selectedService) {
+      // Fade out first
+      setIsVisible(false)
+
+      // Update content after fade out
+      const updateTimer = setTimeout(() => {
+        setCurrentService(selectedService)
+      }, 200)
+
+      // Fade in with new content
+      const showTimer = setTimeout(() => {
+        setIsVisible(true)
+      }, 250)
+
+      return () => {
+        clearTimeout(updateTimer)
+        clearTimeout(showTimer)
+      }
+    }
+  }, [selectedService])
+
+  // Show empty state when no service is selected
+  if (!currentService) {
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <div className="text-center p-8 text-white/40 transition-all duration-300 ease-out">
+          <div className="w-16 h-16 mx-auto mb-4 rounded-full border-2 border-dashed border-white/20 flex items-center justify-center">
+            <div className="w-6 h-6 border-2 border-white/20 border-t-white/40 rounded-full animate-spin" />
+          </div>
+          <p className="text-lg font-['Satoshi_Variable']">
+            Select a service to view details
+          </p>
+        </div>
+      </div>
+    )
+  }
+
+  // Split description by newlines and filter out empty strings
+  const descriptionItems = currentService.description
+    .split('\n')
+    .filter(item => item.trim() !== '')
 
   return (
-    <div className="w-full flex flex-col justify-center items-center gap-10 p-6">
-      <div className="w-full max-w-80 h-48 flex flex-col justify-start items-start gap-2.5 overflow-hidden rounded-lg">
-        <img
-          className="w-full h-48 object-cover"
-          src={selectedService.image}
-          alt={selectedService.title}
-        />
-      </div>
-      <div className="flex flex-col justify-start items-end gap-5">
-        <div className="w-full self-stretch text-center justify-end text-white text-3xl font-normal font-['Satoshi_Variable'] leading-9">Our Capabilities:</div>
-        <div className="w-full self-stretch justify-end text-white text-xl font-normal font-['Satoshi_Variable'] leading-loose">
-          {selectedService.description}
+    <div className="relative w-full h-full">
+      <div
+        className={`w-full p-6 rounded-[30px] transition-all duration-400 ease-out ${
+          isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+        }`}
+      >
+        {/* Content */}
+        <div className="relative z-10 flex flex-col gap-8 w-full">
+          {/* Image Section */}
+          <div className="relative group overflow-hidden rounded-2xl">
+            <div className="relative w-full h-56 rounded-2xl overflow-hidden shadow-2xl">
+              <img
+                className={`w-full h-full object-cover transition-all duration-600 ease-out ${
+                  isVisible
+                    ? 'scale-100 opacity-100 blur-0'
+                    : 'scale-105 opacity-0 blur-sm'
+                }`}
+                src={currentService.image}
+                alt={currentService.text}
+              />
+              {/* Overlay gradient for smoother transition */}
+              <div
+                className={`absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent transition-opacity duration-400 ${
+                  isVisible ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
+            </div>
+          </div>
+
+          {/* Text Content */}
+          <div
+            className={`space-y-4 transition-all duration-500 ease-out ${
+              isVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-6'
+            }`}
+            style={{
+              transitionDelay: isVisible ? '200ms' : '0ms',
+            }}
+          >
+            <div className="flex justify-center items-center gap-3">
+              <h3 className="text-white text-center text-2xl font-['Satoshi_Variable'] leading-tight">
+                Our Capabilities
+              </h3>
+            </div>
+
+            {/* Loop through description items */}
+            <div className="space-y-3 p-6">
+              {descriptionItems.map((item, index) => (
+                <div key={index} className="flex items-center gap-3">
+                  <svg
+                    className="w-4 h-4 mt-0.5 text-green-500 dark:text-green-400 flex-shrink-0"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                  </svg>
+                  <span className="text-white/90 text-lg font-['Satoshi_Variable'] leading-relaxed">
+                    {item.trim()}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -282,7 +377,6 @@ const Capability = () => {
   }
 
   const handleServiceClick = (serviceId: string) => {
-    // Toggle selection - if clicking the same service, deselect it
     setSelectedService(selectedService === serviceId ? null : serviceId)
   }
 
@@ -298,7 +392,7 @@ const Capability = () => {
   }
 
   return (
-    <div className="w-full self-stretch px-28 py-20 relative bg-neutral-950 inline-flex flex-col justify-center items-center gap-20">
+    <div className="w-full self-stretch px-8 md:px-16 lg:px-28 py-20 relative bg-neutral-950 inline-flex flex-col justify-center items-center gap-20">
       <div className="self-stretch flex flex-col justify-start items-center gap-6">
         <div className="text-center justify-center text-white text-4xl font-bold font-['Satoshi_Variable'] leading-9">
           With an in-house team,
@@ -309,19 +403,20 @@ const Capability = () => {
           We deliver tailored solutions with precision, reliability, and speed.
         </div>
       </div>
-      <div className="p-6 bg-stone-900/40 rounded-[30px] outline outline-1 outline-offset-[-1px] outline-white/10 backdrop-blur-xl">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-12">
-            {/* Left Column - Services List */}
-            <div className="flex flex-col justify-start items-start">
-              <div className="w-full rounded-[20px] flex flex-col justify-center items-start">
-                {services.map((service, index) => (
-                  <AccordionItem
-                    key={index}
-                    title={service.title}
-                    isOpen={openItem === index}
-                    onToggle={() => handleToggle(index)}
-                  >
+
+      <div className="w-full max-w-6xl p-6 bg-stone-900/40 rounded-[30px] outline outline-1 outline-offset-[-1px] outline-white/10 backdrop-blur-xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 min-h-[600px] relative">
+          {/* Left Column - Services List */}
+          <div className="flex flex-col justify-start min-w-0">
+            <div className="space-y-1">
+              {services.map((service, index) => (
+                <AccordionItem
+                  key={index}
+                  title={service.title}
+                  isOpen={openItem === index}
+                  onToggle={() => handleToggle(index)}
+                >
+                  <div className="space-y-2 py-2">
                     {service.items.map((item, itemIndex) => (
                       <ServiceItem
                         key={itemIndex}
@@ -331,18 +426,16 @@ const Capability = () => {
                         onClick={() => handleServiceClick(item.id)}
                       />
                     ))}
-                  </AccordionItem>
-                ))}
-              </div>
+                  </div>
+                </AccordionItem>
+              ))}
             </div>
+          </div>
 
-            {/* Right Column - Service Details */}
-            <div className="flex flex-col justify-start items-start">
-              {selectedService && (
-                <div className="top-6">
-                  <RightPanel selectedService={getSelectedServiceData()} />
-                </div>
-              )}
+          {/* Right Column - Service Details */}
+          <div className="flex flex-col justify-start min-w-0">
+            <div className="sticky top-8 h-full">
+              <RightPanel selectedService={getSelectedServiceData()} />
             </div>
           </div>
         </div>

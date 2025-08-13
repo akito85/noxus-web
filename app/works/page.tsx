@@ -1,12 +1,13 @@
 import Image from 'next/image'
 import Discussion from '../../components/Discussion'
 import Hero from '../../components/body/Hero'
+import Portfolio from '../../components/Portfolio'
 
 const Works = () => {
   return (
     <>
       <Hero layout="custom">
-        <div className="self-stretch px-28 py-20 relative inline-flex flex-col justify-center items-start gap-10">
+        <div className="static self-stretch px-28 py-20 relative inline-flex flex-col justify-center items-start gap-10">
           <div className="self-stretch inline-flex justify-start items-center gap-20">
             <div className="flex-1 justify-center">
               <span className="text-red-800 text-5xl font-medium font-['Satoshi_Variable']">
@@ -34,8 +35,11 @@ const Works = () => {
               </div>
             </div>
           </div>
+          <div className="w-full h-44 left-0 bottom-0 absolute bg-gradient-to-b from-neutral-950/0 to-neutral-950" />
         </div>
       </Hero>
+
+      <Portfolio />
 
       <Discussion
         title="Let's build your story next"

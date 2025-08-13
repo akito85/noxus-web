@@ -1,0 +1,11 @@
+{
+  "timestamp": "2025-08-13T17:17:06.832611+07:00",
+  "source": { "id": "cli/platform", "name": "Platform" },
+  "markdownMessage": "On the Mac OS X (aarch64; 15.6) platform.",
+  "visibility": {
+    "cliSummaryTable": false,
+    "statusPage": false,
+    "telemetry": true
+  },
+  "attributes": { "arch": "aarch64", "name": "Mac OS X", "version": "15.6" }
+}

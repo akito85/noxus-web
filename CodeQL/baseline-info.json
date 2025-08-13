@@ -1,0 +1,45 @@
+{
+  "languages": {
+    "javascript": {
+      "displayName": "JavaScript/TypeScript",
+      "files": [
+        "next.config.ts",
+        "components/Capability.tsx",
+        "components/Portfolio.tsx",
+        "layouts/footer/index.tsx",
+        "components/Discussion.tsx",
+        "app/layout.tsx",
+        "components/Stack.tsx",
+        "app/page.tsx",
+        "components/Testimony.tsx",
+        "components/atom/HeroOne.tsx",
+        "layouts/header/index.tsx",
+        "components/footer/Social.tsx",
+        "components/footer/Contact.tsx",
+        "components/atom/HeroService.tsx",
+        "components/Faq.tsx",
+        "app/works/page.tsx",
+        "components/atom/Frame.tsx",
+        "components/body/Services.tsx",
+        "components/body/Experience.tsx",
+        "components/body/Hero.tsx",
+        "components/atom/ArrowIcon.tsx",
+        "components/atom/Button.tsx",
+        "app/services/page.tsx",
+        "components/body/Portfolios.tsx",
+        "components/body/Articles.tsx",
+        "components/header/Navigation.tsx",
+        "components/body/Clients.tsx",
+        "components/header/Noxus.tsx",
+        "components/header/Hamburger.tsx",
+        "components/body/Discuss.tsx",
+        "components/body/Hows.tsx",
+        "components/body/Whys.tsx",
+        "tailwind.config.js",
+        "postcss.config.mjs"
+      ],
+      "linesOfCode": 2752,
+      "name": "javascript"
+    }
+  }
+}

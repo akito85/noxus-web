@@ -1,0 +1,13 @@
+---
+sourceLocationPrefix: /Users/noxus/GitHub/noxus-web
+baselineLinesOfCode: 2752
+unicodeNewlines: true
+columnKind: utf16
+primaryLanguage: javascript
+creationMetadata:
+  sha: 13548be6afb42aaebfca6bcd33c26f4c68a4d695
+  cliVersion: 2.22.3
+  creationTime: 2025-08-13T10:17:06.862309Z
+finalised: true
+overlayBaseDatabase: false
+overlayDatabase: false

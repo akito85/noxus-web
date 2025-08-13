@@ -36,12 +36,16 @@ const technologies: Technology[] = [
     logoUrl: '/assets/images/Stacks/vercel.svg',
   },
   {
-    name: 'Netxtjs',
-    logoUrl: '/assets/images/Stacks/nextjs.svg',
+    name: 'React',
+    logoUrl: '/assets/images/Stacks/react.svg',
   },
   {
-    name: 'Reactjs',
-    logoUrl: '/assets/images/Stacks/reactjs.svg',
+    name: 'Laravel',
+    logoUrl: '/assets/images/Stacks/laravel.svg',
+  },
+  {
+    name: 'Netxtjs',
+    logoUrl: '/assets/images/Stacks/nextjs.svg',
   },
   {
     name: 'fastify',
@@ -49,7 +53,7 @@ const technologies: Technology[] = [
   },
   {
     name: 'Tailwindcss',
-    logoUrl: '/assets/images/Stacks/tailwindcss2.svg',
+    logoUrl: '/assets/images/Stacks/tailwindcss.svg',
   },
   {
     name: 'Docker',
@@ -68,32 +72,16 @@ const technologies: Technology[] = [
     logoUrl: '/assets/images/Stacks/supabase.svg',
   },
   {
-    name: 'Vercel',
-    logoUrl: '/assets/images/Stacks/vercel.svg',
+    name: 'Vault',
+    logoUrl: '/assets/images/Stacks/vault.svg',
   },
   {
-    name: 'Vercel',
-    logoUrl: '/assets/images/Stacks/vercel.svg',
+    name: 'Mysql',
+    logoUrl: '/assets/images/Stacks/mysql.svg',
   },
   {
-    name: 'Vercel',
-    logoUrl: '/assets/images/Stacks/vercel.svg',
-  },
-  {
-    name: 'Vercel',
-    logoUrl: '/assets/images/Stacks/vercel.svg',
-  },
-  {
-    name: 'Vercel',
-    logoUrl: '/assets/images/Stacks/vercel.svg',
-  },
-  {
-    name: 'Vercel',
-    logoUrl: '/assets/images/Stacks/vercel.svg',
-  },
-  {
-    name: 'Vercel',
-    logoUrl: '/assets/images/Stacks/vercel.svg',
+    name: 'Flutter',
+    logoUrl: '/assets/images/Stacks/flutter.svg',
   },
 ]
 
@@ -126,9 +114,9 @@ const TechCard = ({ tech, index }: TechCardProps) => {
           <Image
             src={tech.logoUrl}
             alt={`${tech.name} logo`}
-            width={88}
-            height={88}
-            className={`w-full h-full object-contain transition-opacity duration-200 ${
+            width={55}
+            height={55}
+            className={`object-contain transition-opacity duration-200 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
             onLoad={handleImageLoad}

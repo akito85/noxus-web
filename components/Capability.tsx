@@ -122,10 +122,8 @@ const RightPanel = ({ selectedService }: RightPanelProps) => {
         />
       </div>
       <div className="flex flex-col justify-start items-end gap-5">
-        <div className="w-full text-center text-white text-2xl md:text-3xl font-normal font-sans leading-9">
-          Our Capabilities:
-        </div>
-        <div className="w-full text-right text-white text-lg md:text-2xl font-normal font-sans leading-loose">
+        <div className="w-full self-stretch text-center justify-end text-white text-3xl font-normal font-['Satoshi_Variable'] leading-9">Our Capabilities:</div>
+        <div className="w-full self-stretch justify-end text-white text-xl font-normal font-['Satoshi_Variable'] leading-loose">
           {selectedService.description}
         </div>
       </div>
